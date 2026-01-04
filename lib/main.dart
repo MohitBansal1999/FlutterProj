@@ -59,37 +59,37 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    var arrNames = ['Mohit','Karan','Rahul','Kunal','Sachin'];
+    var arrNames = ['Mohit','Karan','Rahul','Kunal','Sachin','Mohit','Karan','Rahul','Kunal','Sachin'];
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-            child: Column(
+      body:
+      // SingleChildScrollView(
+      //   child: Center(
+      //       child:
+            ListView(
               children: [
-                Container(
+                Container( //decoration
                   width: 300, height: 300, color: Colors.blue.shade50,
                   child: Center(
                     child: Container(
                       width: 200, height: 200,
                       decoration: BoxDecoration(
                         color: Colors.yellow,
-                        borderRadius: BorderRadius.only(topLeft: Radius.elliptical(30, 30), bottomRight: Radius.circular(40)),
-                        //borderRadius: BorderRadius.circular(20),
+                        //borderRadius: BorderRadius.only(topLeft: Radius.elliptical(30, 30), bottomRight: Radius.circular(40)),
+                        borderRadius: BorderRadius.circular(100),
                         border: Border.all(width: 2, color: Colors.green, style: .solid),
-                        boxShadow: [BoxShadow(color: Colors.red, blurRadius: 50, spreadRadius: 20)]
-
+                        boxShadow: [BoxShadow(color: Colors.red, blurRadius: 50, spreadRadius: 20)],
+                        // shape: .circle
                       ),
                       child: Center(child: Text("data")),
                     ),
                   ),
 
                 ),
-
-
 
                 Container(
                       color: Colors.grey,
@@ -167,32 +167,70 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     )
                 ), //ROW inside
+
                 InkWell(
                   onTap: (){print("tapped!!");},
                   onDoubleTap: (){print("Double tapped!!");},
                   onLongPress: (){print("Long pressed!!");},
                   child: Text("InkWell - Press me!!", style: TextStyle(fontSize: 25, backgroundColor: Colors.green),),
                 ),
+
+
+                //Expended Widget
+                Row( //for occuping remaining space
+                  children: [
+                    Container(width: 50, height: 100, color: Colors.blue,),
+                    Container(width: 100, height: 100, color: Colors.orange,),
+                    Expanded(child: Container( child: Text("Expended without flex, using all remaining space"), height: 100, color: Colors.red,)),
+
+                  ],
+                ),
+                Container(height: 300,
+                    child: Column( //expended with ratio
+                      children: [
+                        Expanded(flex: 2, child: Container(color: Colors.brown,)),
+                        Expanded(flex: 4, child: Container(color: Colors.yellow)),
+                        Expanded(flex: 1, child: Container(color: Colors.red)),
+                        Expanded(flex: 3, child: Container(color: Colors.green)),
+                      ],
+                    )
+                ),
+
+                //Margin and Padding
+                Container(
+                  height: 100, width: .maxFinite, color: Colors.blueGrey,
+                  margin: EdgeInsets.all(20),
+                  child: Padding(padding: EdgeInsets.all(10),child: Text("Hello World!!", style: TextStyle(fontSize: 25,color: Colors.white),),),
+                ),
+
+                //ListView.builder
+                Container(
+                  height: 50,width: .maxFinite, color: Colors.brown,
+                  child: ListView.builder(itemBuilder: (context, index) {
+                          return Text(arrNames[index], style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500, color: Colors.white),);
+                        },
+                        itemCount: arrNames.length,
+                        itemExtent: 100,
+                        scrollDirection: .horizontal,
+                      ),
+                ),
+                //ListView.seperated
+                Container(height: 200, width: .maxFinite, color: Colors.pinkAccent,
+                  child: ListView.separated(itemBuilder: (context, index) {
+                    return Text("Hello " + arrNames[index], style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),);
+                  },
+                      itemCount: arrNames.length,
+                      separatorBuilder: (context,index){
+                        return Divider(thickness: 4, height: 30,);
+                      }
+                  ),
+                )
+
+                //
               ])
-          ),
-      ),
-      
-      // body: ListView.builder(itemBuilder: (context, index) {
-      //       return Text(arrNames[index], style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),);
-      //     },
-      //     itemCount: arrNames.length,
-      //     itemExtent: 100,
-      //     scrollDirection: .horizontal,
-      //   ),
-      
-      // body: ListView.separated(itemBuilder: (context, index) {
-      //         return Text("Hello " + arrNames[index], style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),);
-      //       },
-      //       itemCount: arrNames.length,
-      //       separatorBuilder: (context,index){
-      //         return Divider(thickness: 4, height: 50,);
-      //       }
       //     ),
+      // ),
+
     );
   }
 }
