@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proj2/ui_help/util.dart';
 import 'package:intl/intl.dart';
+import 'package:proj2/widgets/custom_widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -80,6 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
             Center(
               child: ListView(
                 children: [
+
+                  //custom widget
+                  Center(
+                    child: Column(spacing: 5, mainAxisAlignment: .center,
+                      children: [
+                        Container(width: 120 ,alignment: .center, height: 50,
+                          child: RoundedButtonWidget(btnName: "Play",btnTextStyle: TextStyle(color: Colors.white, fontSize: 16),icon: Icon(Icons.play_arrow),btnCallBack: (){print("Custom BTN pressed");},),
+                        ),
+                        Container(width: 120 ,alignment: .center, height: 50,
+                          child: RoundedButtonWidget(btnName: "Paused",bgColor: Colors.orange, btnTextStyle: TextStyle(color: Colors.white, fontSize: 21),btnCallBack: (){print("Custom BTN pressed");},),
+                        ),
+                      ],
+                    )
+                  ),
 
 
                   //Decoration
@@ -377,7 +392,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   //GridView builder with index
-                  Container(width: .maxFinite, height: 600,
+                  Container(width: .maxFinite, height: 300,
                     child: GridView.builder(
                         // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 100),
@@ -387,6 +402,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         }),
                   ),
 
+                  //Splitting app into multiple widgets
+                  subWidgetDemo(),
 
 
 
@@ -395,6 +412,16 @@ class _MyHomePageState extends State<MyHomePage> {
       //     ),
       // ),
 
+    );
+  }
+}
+class subWidgetDemo extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      height: 200,width: 200,color: Colors.grey,alignment: .center,
+      child: Text("Sub Widget", style: TextStyle(fontSize: 25,fontWeight: .bold),),
     );
   }
 }
