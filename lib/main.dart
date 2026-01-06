@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     var arrNames = ['Mohit','Karan','Rahul','Kunal','Sachin','Mohit','Karan','Rahul','Kunal','Sachin'];
+    var arrColors = [Colors.red,Colors.pink,Colors.blue,Colors.grey,Colors.green,Colors.purple,Colors.lime,Colors.brown,Colors.yellow];
     var emailCollection = TextEditingController();
     var pwdController = TextEditingController();
     var dateTime = DateTime.now();
@@ -347,8 +348,47 @@ class _MyHomePageState extends State<MyHomePage> {
                     if(time!=null){print(time);}
                   }, child: Text("Select Time")),
 
+                  //Grid view with given column(crossAxisCount) count
+                  Container(width: .maxFinite, height: 300,
+                    child: GridView.count(crossAxisCount: 4, mainAxisSpacing: 10,crossAxisSpacing: 10,
+                      children: [
+                        Container(color: Colors.red,),
+                        Container(color: Colors.yellow,),
+                        Container(color: Colors.blue,),
+                        Container(color: Colors.green,),
+                        Container(color: Colors.pink,),
+                        Container(color: Colors.brown,),
+                        Container(color: Colors.purple,),
+                      ],
+                    ),
+                  ),
+                  //Grid View with max allowed width extent of column //maxCrossAxisExtent
+                  Container(width: .maxFinite, height: 250,
+                    child: GridView.extent(maxCrossAxisExtent: 80, mainAxisSpacing: 10,crossAxisSpacing: 10,
+                      children: [
+                        Container(color: Colors.red,),
+                        Container(color: Colors.yellow,),
+                        Container(color: Colors.blue,),
+                        Container(color: Colors.green,),
+                        Container(color: Colors.pink,),
+                        Container(color: Colors.brown,),
+                        Container(color: Colors.purple,),
+                      ],
+                    ),
+                  ),
+                  //GridView builder with index
+                  Container(width: .maxFinite, height: 600,
+                    child: GridView.builder(
+                        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 100),
+                        itemCount: arrColors.length,
+                        itemBuilder: (context,index){
+                          return Container(color: arrColors[index],);
+                        }),
+                  ),
 
-                  
+
+
 
                 ]),
             )
