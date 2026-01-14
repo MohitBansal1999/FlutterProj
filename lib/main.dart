@@ -98,6 +98,26 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: [
+
+          //List wheel scrollview
+          Container(
+            height: 180,color: Colors.blue.shade100,
+            child: ListWheelScrollView(
+              itemExtent: 50,
+              children: arrNames.map((value){
+                return Container(
+                  width: 180,alignment: .center,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(value,style: TextStyle(color: Colors.white),),
+                );
+              }).toList()
+            ),
+          ),
+
+
           FooAnimationWidget(),
 
           //Clip RRect
